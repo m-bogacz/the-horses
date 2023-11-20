@@ -1,0 +1,14 @@
+query HorsesGetAll {
+  horses {
+    createdAt
+    foaling
+    gender
+    id
+    name
+    publishedAt
+    updatedAt
+    profileImage {
+      url
+    }
+  }
+}
