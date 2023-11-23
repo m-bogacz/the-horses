@@ -1,0 +1,10 @@
+fragment Horse on Horse {
+  foaling
+  gender
+  id
+  name
+  place
+  profileImage {
+    url
+  }
+}

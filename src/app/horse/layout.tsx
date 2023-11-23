@@ -7,7 +7,7 @@ export default function HorseLayout({
 }) {
   return (
     <main className="h-screen flex">
-      <div className="hidden sm:block w-48  md:w-48 ">
+      <div className="hidden md:block w-48  md:w-48 ">
         <Sidebar />
       </div>
       {children}

@@ -19,12 +19,12 @@ export const Hamburger = ({
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
   return (
-    <div className={clsx("sm:hidden flex justify-end", isHome && "hidden")}>
+    <div className={clsx("md:hidden flex justify-end", isHome && "hidden")}>
       {!isOpen ? (
         <PanelRightOpen
           color="white"
           size={30}
-          className="sm:hidden"
+          className="md:hidden"
           onClick={toggleOpen}
         />
       ) : (

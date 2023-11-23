@@ -16,11 +16,12 @@ const config: CodegenConfig = {
       },
       config: {
         useTypeImports: true,
-        defaultScalarType: "unknown",
+        // defaultScalarType: "unknown",
         enumsAsTypes: true,
         skipTypename: true,
         documentMode: "string",
       },
+
       plugins: [],
     },
   },

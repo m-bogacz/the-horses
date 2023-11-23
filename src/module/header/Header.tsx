@@ -27,7 +27,7 @@ export const Header = () => {
             <Sidebar />
           </Hamburger>
         </div>
-        <nav className="flex-1 flex md:justify-between justify-end h-20 md:border-b mx-10 items-center border-b-slate-400">
+        <nav className="flex-1 flex md:justify-between justify-end h-20 md:border-b mx-10 items-center  border-b-slate-400">
           <h2 className="text-4xl font-medium  hidden md:block">Dashboard</h2>
           <div className="w-10 h-10 bg-dark rounded-full flex items-center justify-center">
             MB

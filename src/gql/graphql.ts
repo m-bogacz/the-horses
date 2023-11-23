@@ -15,18 +15,18 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: { input: unknown; output: unknown; }
+  Date: { input: any; output: any; }
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
-  DateTime: { input: unknown; output: unknown; }
-  Hex: { input: unknown; output: unknown; }
+  DateTime: { input: any; output: any; }
+  Hex: { input: any; output: any; }
   /** Raw JSON value */
-  Json: { input: unknown; output: unknown; }
+  Json: { input: any; output: any; }
   /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: { input: unknown; output: unknown; }
-  RGBAHue: { input: unknown; output: unknown; }
-  RGBATransparency: { input: unknown; output: unknown; }
+  Long: { input: any; output: any; }
+  RGBAHue: { input: any; output: any; }
+  RGBATransparency: { input: any; output: any; }
   /** Slate-compatible RichText AST */
-  RichTextAST: { input: unknown; output: unknown; }
+  RichTextAST: { input: any; output: any; }
 };
 
 export type Aggregate = {
@@ -874,7 +874,7 @@ export type Horse = Entity & Node & {
   name: Scalars['String']['output'];
   photos: Array<Asset>;
   place: Scalars['String']['output'];
-  profileImage?: Maybe<Asset>;
+  profileImage: Asset;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -991,7 +991,7 @@ export type HorseCreateInput = {
   name: Scalars['String']['input'];
   photos?: InputMaybe<AssetCreateManyInlineInput>;
   place: Scalars['String']['input'];
-  profileImage?: InputMaybe<AssetCreateOneInlineInput>;
+  profileImage: AssetCreateOneInlineInput;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -3840,12 +3840,14 @@ export type HorseGetByNameQueryVariables = Exact<{
 }>;
 
 
-export type HorseGetByNameQuery = { horse?: { createdAt: unknown, foaling: unknown, gender?: TypeGender | null, id: string, name: string, publishedAt?: unknown | null, updatedAt: unknown, profileImage?: { url: string } | null } | null };
+export type HorseGetByNameQuery = { horse?: { foaling: any, gender?: TypeGender | null, id: string, name: string, place: string, profileImage: { url: string } } | null };
 
 export type HorsesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HorsesGetAllQuery = { horses: Array<{ id: string, name: string, profileImage?: { url: string } | null }> };
+export type HorsesGetAllQuery = { horses: Array<{ id: string, name: string, profileImage: { url: string } }> };
+
+export type HorseFragment = { foaling: any, gender?: TypeGender | null, id: string, name: string, place: string, profileImage: { url: string } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3861,23 +3863,34 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
+export const HorseFragmentDoc = new TypedDocumentString(`
+    fragment Horse on Horse {
+  foaling
+  gender
+  id
+  name
+  place
+  profileImage {
+    url
+  }
+}
+    `, {"fragmentName":"Horse"}) as unknown as TypedDocumentString<HorseFragment, unknown>;
 export const HorseGetByNameDocument = new TypedDocumentString(`
     query HorseGetByName($name: String) {
   horse(where: {name: $name}) {
-    createdAt
-    foaling
-    gender
-    id
-    name
-    publishedAt
-    updatedAt
-    profileImage {
-      url
-    }
+    ...Horse
   }
 }
-    `) as unknown as TypedDocumentString<HorseGetByNameQuery, HorseGetByNameQueryVariables>;
+    fragment Horse on Horse {
+  foaling
+  gender
+  id
+  name
+  place
+  profileImage {
+    url
+  }
+}`) as unknown as TypedDocumentString<HorseGetByNameQuery, HorseGetByNameQueryVariables>;
 export const HorsesGetAllDocument = new TypedDocumentString(`
     query HorsesGetAll {
   horses {

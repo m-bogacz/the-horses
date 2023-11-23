@@ -14,18 +14,23 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}": types.HorseGetByNameDocument,
+    "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    ...Horse\n  }\n}": types.HorseGetByNameDocument,
     "query HorsesGetAll {\n  horses {\n    id\n    name\n    profileImage {\n      url\n    }\n  }\n}": types.HorsesGetAllDocument,
+    "fragment Horse on Horse {\n  foaling\n  gender\n  id\n  name\n  place\n  profileImage {\n    url\n  }\n}": types.HorseFragmentDoc,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}"): typeof import('./graphql').HorseGetByNameDocument;
+export function graphql(source: "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    ...Horse\n  }\n}"): typeof import('./graphql').HorseGetByNameDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query HorsesGetAll {\n  horses {\n    id\n    name\n    profileImage {\n      url\n    }\n  }\n}"): typeof import('./graphql').HorsesGetAllDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment Horse on Horse {\n  foaling\n  gender\n  id\n  name\n  place\n  profileImage {\n    url\n  }\n}"): typeof import('./graphql').HorseFragmentDoc;
 
 
 export function graphql(source: string) {

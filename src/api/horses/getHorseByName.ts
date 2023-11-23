@@ -7,9 +7,5 @@ export const getHorseByName = async (name: string) => {
     variables: { name },
   });
 
-  //   if (graphqlResponse.horse === null) {
-  //     return null;
-  //   }
-
-  return graphqlResponse;
+  return graphqlResponse.horse;
 };
