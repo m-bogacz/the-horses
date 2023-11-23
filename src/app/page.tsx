@@ -1,13 +1,11 @@
-import { getHorses } from "@/api/horses/getAllhorses";
+import { Sidebar } from "@/module/sidebar/Sidebar";
 
 export default async function Home() {
-  const horses = await getHorses();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Hello world
-      {horses.map((horse) => (
-        <div key={horse.id}>{horse.name}</div>
-      ))}
-    </main>
+    <section className="flex-1">
+      <section className="h-full flex">
+        <Sidebar />
+      </section>
+    </section>
   );
 }

@@ -3835,10 +3835,17 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type HorseGetByNameQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type HorseGetByNameQuery = { horse?: { createdAt: unknown, foaling: unknown, gender?: TypeGender | null, id: string, name: string, publishedAt?: unknown | null, updatedAt: unknown, profileImage?: { url: string } | null } | null };
+
 export type HorsesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HorsesGetAllQuery = { horses: Array<{ createdAt: unknown, foaling: unknown, gender?: TypeGender | null, id: string, name: string, publishedAt?: unknown | null, updatedAt: unknown, profileImage?: { url: string } | null }> };
+export type HorsesGetAllQuery = { horses: Array<{ id: string, name: string, profileImage?: { url: string } | null }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3855,9 +3862,9 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const HorsesGetAllDocument = new TypedDocumentString(`
-    query HorsesGetAll {
-  horses {
+export const HorseGetByNameDocument = new TypedDocumentString(`
+    query HorseGetByName($name: String) {
+  horse(where: {name: $name}) {
     createdAt
     foaling
     gender
@@ -3865,6 +3872,17 @@ export const HorsesGetAllDocument = new TypedDocumentString(`
     name
     publishedAt
     updatedAt
+    profileImage {
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<HorseGetByNameQuery, HorseGetByNameQueryVariables>;
+export const HorsesGetAllDocument = new TypedDocumentString(`
+    query HorsesGetAll {
+  horses {
+    id
+    name
     profileImage {
       url
     }

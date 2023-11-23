@@ -1,0 +1,14 @@
+query HorseGetByName($name: String) {
+  horse(where: { name: $name }) {
+    createdAt
+    foaling
+    gender
+    id
+    name
+    publishedAt
+    updatedAt
+    profileImage {
+      url
+    }
+  }
+}

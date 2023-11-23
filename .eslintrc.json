@@ -16,6 +16,8 @@
     // sort imports
     "import/order": "error",
 
+    "@typescript-eslint/no-unsafe-assignment": ["off"],
+
     // no let exports
     "import/no-mutable-exports": "error",
 

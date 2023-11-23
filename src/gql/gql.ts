@@ -14,13 +14,18 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query HorsesGetAll {\n  horses {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}": types.HorsesGetAllDocument,
+    "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}": types.HorseGetByNameDocument,
+    "query HorsesGetAll {\n  horses {\n    id\n    name\n    profileImage {\n      url\n    }\n  }\n}": types.HorsesGetAllDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query HorsesGetAll {\n  horses {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}"): typeof import('./graphql').HorsesGetAllDocument;
+export function graphql(source: "query HorseGetByName($name: String) {\n  horse(where: {name: $name}) {\n    createdAt\n    foaling\n    gender\n    id\n    name\n    publishedAt\n    updatedAt\n    profileImage {\n      url\n    }\n  }\n}"): typeof import('./graphql').HorseGetByNameDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query HorsesGetAll {\n  horses {\n    id\n    name\n    profileImage {\n      url\n    }\n  }\n}"): typeof import('./graphql').HorsesGetAllDocument;
 
 
 export function graphql(source: string) {
