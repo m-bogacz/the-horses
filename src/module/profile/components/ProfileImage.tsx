@@ -11,10 +11,10 @@ export const ProfileImage = ({ url, horseName }: ProfileImageProps) => {
     <div className="overflow-hidden rounded-full border bg-slate-50 hover:bg-slate-100 max-w-xs w-40 h-40">
       <Image
         src={url}
-        width={100}
-        height={100}
+        width={200}
+        height={200}
         alt={horseName}
-        className="h-full w-full rounded-full object-cover object-center p-1 transition-transform hover:scale-105"
+        className="h-full w-full rounded-full object-cover  p-1 transition-transform hover:scale-105"
       />
     </div>
   );

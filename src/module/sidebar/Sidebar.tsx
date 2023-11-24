@@ -6,11 +6,11 @@ import { ActiveLink } from "@/shared/ActiveLink";
 export const Sidebar = async () => {
   const horses = await getHorses();
   return (
-    <aside className="h-full xs:w-40 w-full md:w-48 bg-nav ">
+    <aside className="h-full w-full bg-nav rounded-s-sm ">
       <ul className="h-full w-full flex-col items-stretch p-5">
         {horses.map((horse) => {
           return (
-            <ActiveLink key={horse.id} href={`/horse/${horse.name}`}>
+            <ActiveLink key={horse.id} href={`/horse/${horse.slug}`}>
               <section className="flex justify-center items-center mb-5 gap-2">
                 {horse.profileImage?.url ? (
                   <Image

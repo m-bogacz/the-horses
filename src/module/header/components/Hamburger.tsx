@@ -31,7 +31,7 @@ export const Hamburger = ({
         <PanelRightClose size={30} color="white" onClick={toggleOpen} />
       )}
       {isOpen ? (
-        <div className="fixed left-0 h-screen w-40 top-24 ">{children}</div>
+        <div className="fixed left-0 h-screen w-48 top-20 ">{children}</div>
       ) : null}
     </div>
   );

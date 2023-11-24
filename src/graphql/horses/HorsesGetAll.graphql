@@ -1,6 +1,7 @@
 query HorsesGetAll {
   horses {
     id
+    slug
     name
     profileImage {
       url

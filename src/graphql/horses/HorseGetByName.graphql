@@ -1,5 +1,5 @@
-query HorseGetByName($name: String) {
-  horse(where: { name: $name }) {
+query HorseGetByName($slug: String!) {
+  horse(where: { slug: $slug }) {
     ...Horse
   }
 }

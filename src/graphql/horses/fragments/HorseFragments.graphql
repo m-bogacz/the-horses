@@ -1,8 +1,8 @@
 fragment Horse on Horse {
+  name
   foaling
   gender
   id
-  name
   place
   profileImage {
     url

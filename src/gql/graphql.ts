@@ -835,7 +835,11 @@ export type Entity = {
 export type EntityTypeName =
   /** Asset system model */
   | 'Asset'
+  | 'Foaling'
+  | 'Gender'
   | 'Horse'
+  | 'Name'
+  | 'Place'
   /** Scheduled Operation system model */
   | 'ScheduledOperation'
   /** Scheduled Release system model */
@@ -853,6 +857,552 @@ export type EntityWhereInput = {
   typename: EntityTypeName;
 };
 
+export type Foaling = Entity & {
+  foaling: Scalars['Date']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+/** A connection to a list of items. */
+export type FoalingConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<FoalingEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type FoalingCreateInput = {
+  foaling: Scalars['Date']['input'];
+  label: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+};
+
+export type FoalingCreateWithPositionInput = {
+  /** Document to create */
+  data: FoalingCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type FoalingEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Foaling;
+};
+
+/** Identifies documents */
+export type FoalingManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  foaling?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  foaling_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  foaling_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  foaling_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  foaling_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  foaling_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  foaling_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  foaling_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FoalingOrderByInput =
+  | 'foaling_ASC'
+  | 'foaling_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'label_ASC'
+  | 'label_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC';
+
+export type FoalingUpdateInput = {
+  foaling?: InputMaybe<Scalars['Date']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FoalingUpdateManyInput = {
+  foaling?: InputMaybe<Scalars['Date']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FoalingUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: FoalingUpdateManyInput;
+  /** Document search */
+  where: FoalingWhereInput;
+};
+
+export type FoalingUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<FoalingUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: FoalingWhereUniqueInput;
+};
+
+export type FoalingUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: FoalingUpdateInput;
+  /** Unique document search */
+  where: FoalingWhereUniqueInput;
+};
+
+export type FoalingUpsertInput = {
+  /** Create document if it didn't exist */
+  create: FoalingCreateInput;
+  /** Update document if it exists */
+  update: FoalingUpdateInput;
+};
+
+export type FoalingUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<FoalingUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: FoalingWhereUniqueInput;
+};
+
+export type FoalingUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: FoalingUpsertInput;
+  /** Unique document search */
+  where: FoalingWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type FoalingWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FoalingWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  foaling?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  foaling_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  foaling_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  foaling_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  foaling_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  foaling_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  foaling_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  foaling_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** References Foaling record uniquely */
+export type FoalingWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Gender = Entity & {
+  gender: TypeGender;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  label: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+/** A connection to a list of items. */
+export type GenderConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<GenderEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type GenderCreateInput = {
+  gender: TypeGender;
+  label: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+};
+
+export type GenderCreateWithPositionInput = {
+  /** Document to create */
+  data: GenderCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type GenderEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Gender;
+};
+
+/** Identifies documents */
+export type GenderManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<GenderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<GenderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<GenderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<TypeGender>;
+  /** All values that are contained in given list. */
+  gender_in?: InputMaybe<Array<InputMaybe<TypeGender>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  gender_not?: InputMaybe<TypeGender>;
+  /** All values that are not contained in given list. */
+  gender_not_in?: InputMaybe<Array<InputMaybe<TypeGender>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GenderOrderByInput =
+  | 'gender_ASC'
+  | 'gender_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'label_ASC'
+  | 'label_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC';
+
+export type GenderUpdateInput = {
+  gender?: InputMaybe<TypeGender>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GenderUpdateManyInput = {
+  gender?: InputMaybe<TypeGender>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GenderUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: GenderUpdateManyInput;
+  /** Document search */
+  where: GenderWhereInput;
+};
+
+export type GenderUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<GenderUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: GenderWhereUniqueInput;
+};
+
+export type GenderUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: GenderUpdateInput;
+  /** Unique document search */
+  where: GenderWhereUniqueInput;
+};
+
+export type GenderUpsertInput = {
+  /** Create document if it didn't exist */
+  create: GenderCreateInput;
+  /** Update document if it exists */
+  update: GenderUpdateInput;
+};
+
+export type GenderUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<GenderUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: GenderWhereUniqueInput;
+};
+
+export type GenderUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: GenderUpsertInput;
+  /** Unique document search */
+  where: GenderWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type GenderWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<GenderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<GenderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<GenderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<TypeGender>;
+  /** All values that are contained in given list. */
+  gender_in?: InputMaybe<Array<InputMaybe<TypeGender>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  gender_not?: InputMaybe<TypeGender>;
+  /** All values that are not contained in given list. */
+  gender_not_in?: InputMaybe<Array<InputMaybe<TypeGender>>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** References Gender record uniquely */
+export type GenderWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Horse = Entity & Node & {
   createAsParent?: Maybe<Scalars['Boolean']['output']>;
   /** The time the document was created */
@@ -861,17 +1411,16 @@ export type Horse = Entity & Node & {
   createdBy?: Maybe<User>;
   /** Get the document in other stages */
   documentInStages: Array<Horse>;
-  /** This field in the schema represents the father-child relationship of a horse, where it specifies the mother of a given horse. */
   father?: Maybe<Horse>;
   foaling: Scalars['Date']['output'];
-  gender?: Maybe<TypeGender>;
+  gender: TypeGender;
   /** List of Horse versions */
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
-  /** This field in the schema represents the mother-child relationship of a horse, where it specifies the mother of a given horse. */
   mother?: Maybe<Horse>;
   name: Scalars['String']['output'];
+  news: Array<Tab>;
   photos: Array<Asset>;
   place: Scalars['String']['output'];
   profileImage: Asset;
@@ -880,6 +1429,7 @@ export type Horse = Entity & Node & {
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   scheduledIn: Array<ScheduledOperation>;
+  slug?: Maybe<Scalars['String']['output']>;
   /** System stage field */
   stage: Stage;
   /** The time the document was updated */
@@ -918,6 +1468,19 @@ export type HorseHistoryArgs = {
 export type HorseMotherArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type HorseNewsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<TabOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TabWhereInput>;
 };
 
 
@@ -980,18 +1543,20 @@ export type HorseConnection = {
 };
 
 export type HorseCreateInput = {
-  clp70isu90tya01ugflvvevjh?: InputMaybe<HorseCreateManyInlineInput>;
-  clp70jkfu0txk01ulfvnxegym?: InputMaybe<HorseCreateManyInlineInput>;
+  clpcnccbvbcql01t752ja8i4t?: InputMaybe<HorseCreateManyInlineInput>;
+  clpcnd7kkbc9701und0xud6mx?: InputMaybe<HorseCreateManyInlineInput>;
   createAsParent?: InputMaybe<Scalars['Boolean']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   father?: InputMaybe<HorseCreateOneInlineInput>;
   foaling: Scalars['Date']['input'];
-  gender?: InputMaybe<TypeGender>;
+  gender: TypeGender;
   mother?: InputMaybe<HorseCreateOneInlineInput>;
   name: Scalars['String']['input'];
+  news?: InputMaybe<TabCreateManyInlineInput>;
   photos?: InputMaybe<AssetCreateManyInlineInput>;
   place: Scalars['String']['input'];
   profileImage: AssetCreateOneInlineInput;
+  slug?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -1111,6 +1676,9 @@ export type HorseManyWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  news_every?: InputMaybe<TabWhereInput>;
+  news_none?: InputMaybe<TabWhereInput>;
+  news_some?: InputMaybe<TabWhereInput>;
   photos_every?: InputMaybe<AssetWhereInput>;
   photos_none?: InputMaybe<AssetWhereInput>;
   photos_some?: InputMaybe<AssetWhereInput>;
@@ -1153,6 +1721,25 @@ export type HorseManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1188,21 +1775,25 @@ export type HorseOrderByInput =
   | 'place_DESC'
   | 'publishedAt_ASC'
   | 'publishedAt_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC';
 
 export type HorseUpdateInput = {
-  clp70isu90tya01ugflvvevjh?: InputMaybe<HorseUpdateManyInlineInput>;
-  clp70jkfu0txk01ulfvnxegym?: InputMaybe<HorseUpdateManyInlineInput>;
+  clpcnccbvbcql01t752ja8i4t?: InputMaybe<HorseUpdateManyInlineInput>;
+  clpcnd7kkbc9701und0xud6mx?: InputMaybe<HorseUpdateManyInlineInput>;
   createAsParent?: InputMaybe<Scalars['Boolean']['input']>;
   father?: InputMaybe<HorseUpdateOneInlineInput>;
   foaling?: InputMaybe<Scalars['Date']['input']>;
   gender?: InputMaybe<TypeGender>;
   mother?: InputMaybe<HorseUpdateOneInlineInput>;
   name?: InputMaybe<Scalars['String']['input']>;
+  news?: InputMaybe<TabUpdateManyInlineInput>;
   photos?: InputMaybe<AssetUpdateManyInlineInput>;
   place?: InputMaybe<Scalars['String']['input']>;
   profileImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type HorseUpdateManyInlineInput = {
@@ -1226,6 +1817,7 @@ export type HorseUpdateManyInput = {
   createAsParent?: InputMaybe<Scalars['Boolean']['input']>;
   foaling?: InputMaybe<Scalars['Date']['input']>;
   gender?: InputMaybe<TypeGender>;
+  name?: InputMaybe<Scalars['String']['input']>;
   place?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1372,6 +1964,9 @@ export type HorseWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  news_every?: InputMaybe<TabWhereInput>;
+  news_none?: InputMaybe<TabWhereInput>;
+  news_some?: InputMaybe<TabWhereInput>;
   photos_every?: InputMaybe<AssetWhereInput>;
   photos_none?: InputMaybe<AssetWhereInput>;
   photos_some?: InputMaybe<AssetWhereInput>;
@@ -1414,6 +2009,25 @@ export type HorseWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1449,7 +2063,7 @@ export type HorseWhereStageInput = {
 /** References Horse record uniquely */
 export type HorseWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ImageFit =
@@ -1880,6 +2494,315 @@ export type MutationUpsertHorseArgs = {
   where: HorseWhereUniqueInput;
 };
 
+export type Name = Entity & {
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  label: Scalars['String']['output'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Name>;
+  name: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type NameLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+/** A connection to a list of items. */
+export type NameConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<NameEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type NameCreateInput = {
+  label: Scalars['String']['input'];
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<NameCreateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name: Scalars['String']['input'];
+  /** slug input for default locale (en) */
+  slug: Scalars['String']['input'];
+};
+
+export type NameCreateLocalizationDataInput = {
+  name: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+};
+
+export type NameCreateLocalizationInput = {
+  /** Localization input */
+  data: NameCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type NameCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<NameCreateLocalizationInput>>;
+};
+
+export type NameCreateWithPositionInput = {
+  /** Document to create */
+  data: NameCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type NameEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Name;
+};
+
+/** Identifies documents */
+export type NameManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<NameWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<NameWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<NameWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NameOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'label_ASC'
+  | 'label_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC';
+
+export type NameUpdateInput = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<NameUpdateLocalizationsInput>;
+  /** name input for default locale (en) */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** slug input for default locale (en) */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NameUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NameUpdateLocalizationInput = {
+  data: NameUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type NameUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<NameCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<NameUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<NameUpsertLocalizationInput>>;
+};
+
+export type NameUpdateManyInput = {
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NameUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: NameUpdateManyInput;
+  /** Document search */
+  where: NameWhereInput;
+};
+
+export type NameUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<NameUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: NameWhereUniqueInput;
+};
+
+export type NameUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: NameUpdateInput;
+  /** Unique document search */
+  where: NameWhereUniqueInput;
+};
+
+export type NameUpsertInput = {
+  /** Create document if it didn't exist */
+  create: NameCreateInput;
+  /** Update document if it exists */
+  update: NameUpdateInput;
+};
+
+export type NameUpsertLocalizationInput = {
+  create: NameCreateLocalizationDataInput;
+  locale: Locale;
+  update: NameUpdateLocalizationDataInput;
+};
+
+export type NameUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<NameUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: NameWhereUniqueInput;
+};
+
+export type NameUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: NameUpsertInput;
+  /** Unique document search */
+  where: NameWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type NameWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<NameWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<NameWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<NameWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** References Name record uniquely */
+export type NameWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -1900,6 +2823,295 @@ export type PageInfo = {
   pageSize?: Maybe<Scalars['Int']['output']>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+export type Place = Entity & {
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  label: Scalars['String']['output'];
+  place: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+/** A connection to a list of items. */
+export type PlaceConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PlaceEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PlaceCreateInput = {
+  label: Scalars['String']['input'];
+  place: Scalars['String']['input'];
+  slug: Scalars['String']['input'];
+};
+
+export type PlaceCreateWithPositionInput = {
+  /** Document to create */
+  data: PlaceCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type PlaceEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Place;
+};
+
+/** Identifies documents */
+export type PlaceManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  place?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  place_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  place_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  place_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  place_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  place_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  place_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  place_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  place_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  place_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PlaceOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'label_ASC'
+  | 'label_DESC'
+  | 'place_ASC'
+  | 'place_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC';
+
+export type PlaceUpdateInput = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  place?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PlaceUpdateManyInput = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  place?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PlaceUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PlaceUpdateManyInput;
+  /** Document search */
+  where: PlaceWhereInput;
+};
+
+export type PlaceUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<PlaceUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: PlaceWhereUniqueInput;
+};
+
+export type PlaceUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PlaceUpdateInput;
+  /** Unique document search */
+  where: PlaceWhereUniqueInput;
+};
+
+export type PlaceUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PlaceCreateInput;
+  /** Update document if it exists */
+  update: PlaceUpdateInput;
+};
+
+export type PlaceUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<PlaceUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: PlaceWhereUniqueInput;
+};
+
+export type PlaceUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PlaceUpsertInput;
+  /** Unique document search */
+  where: PlaceWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type PlaceWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PlaceWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars['String']['input']>;
+  place?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  place_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  place_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  place_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  place_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  place_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  place_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  place_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  place_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  place_starts_with?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** References Place record uniquely */
+export type PlaceWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PublishLocaleInput = {
@@ -3183,10 +4395,21 @@ export type SystemDateTimeFieldVariation =
   | 'LOCALIZATION';
 
 export type Tab = Entity & {
+  date: Scalars['Date']['output'];
+  description: Scalars['String']['output'];
+  executedBy: Scalars['String']['output'];
   /** The unique identifier */
   id: Scalars['ID']['output'];
   /** System stage field */
   stage: Stage;
+  title: Scalars['String']['output'];
+};
+
+export type TabConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: TabWhereUniqueInput;
 };
 
 /** A connection to a list of items. */
@@ -3199,8 +4422,20 @@ export type TabConnection = {
 };
 
 export type TabCreateInput = {
-  /** No fields in create input */
-  _?: InputMaybe<Scalars['String']['input']>;
+  date: Scalars['Date']['input'];
+  description: Scalars['String']['input'];
+  executedBy: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+};
+
+export type TabCreateManyInlineInput = {
+  /** Create and connect multiple existing Tab documents */
+  create?: InputMaybe<Array<TabCreateInput>>;
+};
+
+export type TabCreateOneInlineInput = {
+  /** Create and connect one Tab document */
+  create?: InputMaybe<TabCreateInput>;
 };
 
 export type TabCreateWithPositionInput = {
@@ -3228,6 +4463,59 @@ export type TabManyWhereInput = {
   OR?: InputMaybe<Array<TabWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  date_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  date_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  date_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  date_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']['input']>;
+  executedBy?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  executedBy_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  executedBy_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  executedBy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  executedBy_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  executedBy_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  executedBy_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  executedBy_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  executedBy_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  executedBy_starts_with?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -3247,20 +4535,142 @@ export type TabManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TabOrderByInput =
+  | 'date_ASC'
+  | 'date_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'executedBy_ASC'
+  | 'executedBy_DESC'
   | 'id_ASC'
-  | 'id_DESC';
+  | 'id_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
+
+export type TabParent = Horse;
+
+export type TabParentConnectInput = {
+  Horse?: InputMaybe<HorseConnectInput>;
+};
+
+export type TabParentCreateInput = {
+  Horse?: InputMaybe<HorseCreateInput>;
+};
+
+export type TabParentCreateManyInlineInput = {
+  /** Connect multiple existing TabParent documents */
+  connect?: InputMaybe<Array<TabParentWhereUniqueInput>>;
+  /** Create and connect multiple existing TabParent documents */
+  create?: InputMaybe<Array<TabParentCreateInput>>;
+};
+
+export type TabParentCreateOneInlineInput = {
+  /** Connect one existing TabParent document */
+  connect?: InputMaybe<TabParentWhereUniqueInput>;
+  /** Create and connect one TabParent document */
+  create?: InputMaybe<TabParentCreateInput>;
+};
+
+export type TabParentUpdateInput = {
+  Horse?: InputMaybe<HorseUpdateInput>;
+};
+
+export type TabParentUpdateManyInlineInput = {
+  /** Connect multiple existing TabParent documents */
+  connect?: InputMaybe<Array<TabParentConnectInput>>;
+  /** Create and connect multiple TabParent documents */
+  create?: InputMaybe<Array<TabParentCreateInput>>;
+  /** Delete multiple TabParent documents */
+  delete?: InputMaybe<Array<TabParentWhereUniqueInput>>;
+  /** Disconnect multiple TabParent documents */
+  disconnect?: InputMaybe<Array<TabParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing TabParent documents */
+  set?: InputMaybe<Array<TabParentWhereUniqueInput>>;
+  /** Update multiple TabParent documents */
+  update?: InputMaybe<Array<TabParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple TabParent documents */
+  upsert?: InputMaybe<Array<TabParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type TabParentUpdateManyWithNestedWhereInput = {
+  Horse?: InputMaybe<HorseUpdateManyWithNestedWhereInput>;
+};
+
+export type TabParentUpdateOneInlineInput = {
+  /** Connect existing TabParent document */
+  connect?: InputMaybe<TabParentWhereUniqueInput>;
+  /** Create and connect one TabParent document */
+  create?: InputMaybe<TabParentCreateInput>;
+  /** Delete currently connected TabParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected TabParent document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single TabParent document */
+  update?: InputMaybe<TabParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single TabParent document */
+  upsert?: InputMaybe<TabParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TabParentUpdateWithNestedWhereUniqueInput = {
+  Horse?: InputMaybe<HorseUpdateWithNestedWhereUniqueInput>;
+};
+
+export type TabParentUpsertWithNestedWhereUniqueInput = {
+  Horse?: InputMaybe<HorseUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TabParentWhereInput = {
+  Horse?: InputMaybe<HorseWhereInput>;
+};
+
+export type TabParentWhereUniqueInput = {
+  Horse?: InputMaybe<HorseWhereUniqueInput>;
+};
 
 export type TabUpdateInput = {
-  /** No fields in update input */
-  _?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  executedBy?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TabUpdateManyInlineInput = {
+  /** Create and connect multiple Tab component instances */
+  create?: InputMaybe<Array<TabCreateWithPositionInput>>;
+  /** Delete multiple Tab documents */
+  delete?: InputMaybe<Array<TabWhereUniqueInput>>;
+  /** Update multiple Tab component instances */
+  update?: InputMaybe<Array<TabUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Tab component instances */
+  upsert?: InputMaybe<Array<TabUpsertWithNestedWhereUniqueAndPositionInput>>;
 };
 
 export type TabUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  executedBy?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TabUpdateManyWithNestedWhereInput = {
@@ -3268,6 +4678,17 @@ export type TabUpdateManyWithNestedWhereInput = {
   data: TabUpdateManyInput;
   /** Document search */
   where: TabWhereInput;
+};
+
+export type TabUpdateOneInlineInput = {
+  /** Create and connect one Tab document */
+  create?: InputMaybe<TabCreateInput>;
+  /** Delete currently connected Tab document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Tab document */
+  update?: InputMaybe<TabUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Tab document */
+  upsert?: InputMaybe<TabUpsertWithNestedWhereUniqueInput>;
 };
 
 export type TabUpdateWithNestedWhereUniqueAndPositionInput = {
@@ -3319,6 +4740,59 @@ export type TabWhereInput = {
   OR?: InputMaybe<Array<TabWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  date_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  date_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  date_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  date_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']['input']>;
+  executedBy?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  executedBy_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  executedBy_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  executedBy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  executedBy_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  executedBy_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  executedBy_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  executedBy_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  executedBy_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  executedBy_starts_with?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -3338,6 +4812,25 @@ export type TabWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** References Tab record uniquely */
@@ -3836,18 +5329,18 @@ export type _SystemDateTimeFieldVariation =
   | 'localization';
 
 export type HorseGetByNameQueryVariables = Exact<{
-  name?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
 }>;
 
 
-export type HorseGetByNameQuery = { horse?: { foaling: any, gender?: TypeGender | null, id: string, name: string, place: string, profileImage: { url: string } } | null };
+export type HorseGetByNameQuery = { horse?: { name: string, foaling: any, gender: TypeGender, id: string, place: string, profileImage: { url: string } } | null };
 
 export type HorsesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HorsesGetAllQuery = { horses: Array<{ id: string, name: string, profileImage: { url: string } }> };
+export type HorsesGetAllQuery = { horses: Array<{ id: string, slug?: string | null, name: string, profileImage: { url: string } }> };
 
-export type HorseFragment = { foaling: any, gender?: TypeGender | null, id: string, name: string, place: string, profileImage: { url: string } };
+export type HorseFragment = { name: string, foaling: any, gender: TypeGender, id: string, place: string, profileImage: { url: string } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3865,10 +5358,10 @@ export class TypedDocumentString<TResult, TVariables>
 }
 export const HorseFragmentDoc = new TypedDocumentString(`
     fragment Horse on Horse {
+  name
   foaling
   gender
   id
-  name
   place
   profileImage {
     url
@@ -3876,16 +5369,16 @@ export const HorseFragmentDoc = new TypedDocumentString(`
 }
     `, {"fragmentName":"Horse"}) as unknown as TypedDocumentString<HorseFragment, unknown>;
 export const HorseGetByNameDocument = new TypedDocumentString(`
-    query HorseGetByName($name: String) {
-  horse(where: {name: $name}) {
+    query HorseGetByName($slug: String!) {
+  horse(where: {slug: $slug}) {
     ...Horse
   }
 }
     fragment Horse on Horse {
+  name
   foaling
   gender
   id
-  name
   place
   profileImage {
     url
@@ -3895,6 +5388,7 @@ export const HorsesGetAllDocument = new TypedDocumentString(`
     query HorsesGetAll {
   horses {
     id
+    slug
     name
     profileImage {
       url

@@ -5,11 +5,9 @@ import { Profile } from "@/module/profile/Profile";
 export default async function CollectionPage({
   params,
 }: {
-  params: { horseName: string };
+  params: { slug: string };
 }) {
-  const horse = await getHorseByName(params.horseName);
-
-  console.log(horse);
+  const horse = await getHorseByName(params.slug);
 
   if (!horse) {
     notFound();

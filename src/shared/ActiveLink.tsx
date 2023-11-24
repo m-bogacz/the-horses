@@ -31,7 +31,6 @@ export const ActiveLink = <T extends string>({
     ? slicePathname === pathname
     : currentPathname === pathname;
 
-  console.log(currentPathname, pathname, slicePathname);
   return (
     <Link href={href} className={clsx(className, isActive && activeClassName)}>
       {children}
