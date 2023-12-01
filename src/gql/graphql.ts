@@ -1408,6 +1408,42 @@ export type HorsesGetAllQuery = { horses?: { data: Array<{ attributes?: { name: 
 
 export type HorseFragment = { name: string, slug: string, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string } | null } | null } };
 
+export type TabsFarrieriesGetBySlugHorseQueryQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type TabsFarrieriesGetBySlugHorseQueryQuery = { farrieries?: { data: Array<{ attributes?: { title: string, date: any, slug?: string | null, executedBy: string, description?: string | null } | null }> } | null };
+
+export type TabsNewsGetBySlugHorseQueryQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type TabsNewsGetBySlugHorseQueryQuery = { news?: { data: Array<{ attributes?: { title: string, date?: any | null, slug?: string | null, executedBy: string, description: string } | null }> } | null };
+
+export type TabsVaccinationsGetBySlugHorseQueryQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type TabsVaccinationsGetBySlugHorseQueryQuery = { vaccinations?: { data: Array<{ attributes?: { title: string, date?: any | null, slug?: string | null, executedBy: string, description?: string | null } | null }> } | null };
+
+export type TabsVeterinariansGetBySlugHorseQueryQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type TabsVeterinariansGetBySlugHorseQueryQuery = { veterinarians?: { data: Array<{ attributes?: { title: string, date?: any | null, slug?: string | null, executedBy: string, description?: string | null } | null }> } | null };
+
+export type ContentTabNewFragment = { title: string, date?: any | null, slug?: string | null, executedBy: string, description: string };
+
+export type ContentTabFarrieryFragment = { title: string, date: any, slug?: string | null, executedBy: string, description?: string | null };
+
+export type ContentTabVaccinationsFragment = { title: string, date?: any | null, slug?: string | null, executedBy: string, description?: string | null };
+
+export type ContentTabVeterinariansFragment = { title: string, date?: any | null, slug?: string | null, executedBy: string, description?: string | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -1440,6 +1476,42 @@ export const HorseFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"Horse"}) as unknown as TypedDocumentString<HorseFragment, unknown>;
+export const ContentTabNewFragmentDoc = new TypedDocumentString(`
+    fragment ContentTabNew on New {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+    `, {"fragmentName":"ContentTabNew"}) as unknown as TypedDocumentString<ContentTabNewFragment, unknown>;
+export const ContentTabFarrieryFragmentDoc = new TypedDocumentString(`
+    fragment ContentTabFarriery on Farriery {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+    `, {"fragmentName":"ContentTabFarriery"}) as unknown as TypedDocumentString<ContentTabFarrieryFragment, unknown>;
+export const ContentTabVaccinationsFragmentDoc = new TypedDocumentString(`
+    fragment ContentTabVaccinations on Vaccination {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+    `, {"fragmentName":"ContentTabVaccinations"}) as unknown as TypedDocumentString<ContentTabVaccinationsFragment, unknown>;
+export const ContentTabVeterinariansFragmentDoc = new TypedDocumentString(`
+    fragment ContentTabVeterinarians on Veterinarian {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+    `, {"fragmentName":"ContentTabVeterinarians"}) as unknown as TypedDocumentString<ContentTabVeterinariansFragment, unknown>;
 export const HorseGetByNameDocument = new TypedDocumentString(`
     query HorseGetByName($slug: String!) {
   horses(filters: {slug: {eq: $slug}}) {
@@ -1486,3 +1558,71 @@ export const HorsesGetAllDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<HorsesGetAllQuery, HorsesGetAllQueryVariables>;
+export const TabsFarrieriesGetBySlugHorseQueryDocument = new TypedDocumentString(`
+    query TabsFarrieriesGetBySlugHorseQuery($slug: String!) {
+  farrieries(filters: {horses: {slug: {eq: $slug}}}) {
+    data {
+      attributes {
+        ...ContentTabFarriery
+      }
+    }
+  }
+}
+    fragment ContentTabFarriery on Farriery {
+  title
+  date
+  slug
+  executedBy
+  description
+}`) as unknown as TypedDocumentString<TabsFarrieriesGetBySlugHorseQueryQuery, TabsFarrieriesGetBySlugHorseQueryQueryVariables>;
+export const TabsNewsGetBySlugHorseQueryDocument = new TypedDocumentString(`
+    query TabsNewsGetBySlugHorseQuery($slug: String!) {
+  news(filters: {horses: {slug: {eq: $slug}}}) {
+    data {
+      attributes {
+        ...ContentTabNew
+      }
+    }
+  }
+}
+    fragment ContentTabNew on New {
+  title
+  date
+  slug
+  executedBy
+  description
+}`) as unknown as TypedDocumentString<TabsNewsGetBySlugHorseQueryQuery, TabsNewsGetBySlugHorseQueryQueryVariables>;
+export const TabsVaccinationsGetBySlugHorseQueryDocument = new TypedDocumentString(`
+    query TabsVaccinationsGetBySlugHorseQuery($slug: String!) {
+  vaccinations(filters: {horses: {slug: {eq: $slug}}}) {
+    data {
+      attributes {
+        ...ContentTabVaccinations
+      }
+    }
+  }
+}
+    fragment ContentTabVaccinations on Vaccination {
+  title
+  date
+  slug
+  executedBy
+  description
+}`) as unknown as TypedDocumentString<TabsVaccinationsGetBySlugHorseQueryQuery, TabsVaccinationsGetBySlugHorseQueryQueryVariables>;
+export const TabsVeterinariansGetBySlugHorseQueryDocument = new TypedDocumentString(`
+    query TabsVeterinariansGetBySlugHorseQuery($slug: String!) {
+  veterinarians(filters: {horses: {slug: {eq: $slug}}}) {
+    data {
+      attributes {
+        ...ContentTabVeterinarians
+      }
+    }
+  }
+}
+    fragment ContentTabVeterinarians on Veterinarian {
+  title
+  date
+  slug
+  executedBy
+  description
+}`) as unknown as TypedDocumentString<TabsVeterinariansGetBySlugHorseQueryQuery, TabsVeterinariansGetBySlugHorseQueryQueryVariables>;

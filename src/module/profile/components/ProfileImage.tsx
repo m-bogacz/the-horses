@@ -19,7 +19,6 @@ export const ProfileImage = ({ url, horseName }: ProfileImageProps) => {
         height={200}
         alt={horseName}
         className="h-full w-full rounded-full object-cover  p-1 transition-transform hover:scale-105"
-        priority
       />
     </div>
   );

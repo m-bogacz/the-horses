@@ -1,0 +1,9 @@
+query TabsVeterinariansGetBySlugHorseQuery($slug: String!) {
+  veterinarians(filters: { horses: { slug: { eq: $slug } } }) {
+    data {
+      attributes {
+        ...ContentTabVeterinarians
+      }
+    }
+  }
+}

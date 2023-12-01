@@ -9,16 +9,16 @@ export const Accordion = ({
 }: {
   readonly children: React.ReactNode;
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <div className="bg-primary p-3">
-      <button onClick={() => setIsOpen(!isOpen)} className="w-full">
+    <div className="bg-primary rounded-md  flex-1 py-2 px-4 text-sm font-semibold md:text-base  focus:outline-none focus:shadow-outline-blue transition-all duration-300 ml-0 mr-0 ">
+      <button onClick={() => setIsOpen(!isOpen)} className="w-full p-4">
         <Arrow direction={isOpen} />
       </button>
       <div
         className={clsx(
-          "overflow-hidden bg-primary transition-all duration-300 ease-in-out text-center",
+          "overflow-hidden bg-primary transition-all duration-300 ease-in-out text-center ",
           isOpen ? "max-h-screen" : "max-h-10"
         )}
       >

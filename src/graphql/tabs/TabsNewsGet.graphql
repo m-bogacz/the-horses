@@ -1,1 +1,9 @@
-
+query TabsNewsGetBySlugHorseQuery($slug: String!) {
+  news(filters: { horses: { slug: { eq: $slug } } }) {
+    data {
+      attributes {
+        ...ContentTabNew
+      }
+    }
+  }
+}

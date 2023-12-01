@@ -1,51 +1,25 @@
-"use client";
-
-type TabNameProps =
-  | "News"
-  | "Veterinarian"
-  | "Vaccinations"
-  | "Gallery"
-  | "BlackSmith"
-  | "Genealogy tree";
-
 import React from "react";
 
-const tabName = [
-  "News",
-  "Veterinarian",
-  "Vaccinations",
-  "Gallery",
-  "BlackSmith",
-  "Genealogy tree",
-] satisfies TabNameProps[];
+import { tabOptions } from "./common/utils";
+import { Tab } from "./components/Tab";
 
-export const Tabs = () => {
+export const Tabs = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="grid grid-cols-2 xl:grid-cols-4">
-      {tabName.map((tab) => {
-        return <Tab key={tab} tab={tab} />;
-      })}
-    </div>
+    <>
+      <div className="mx-2 md:mx-10 my-2 md:my-5">
+        <div className="mx-auto">
+          <div className="mb-4 md:flex flex-wrap md:text-center md:space-x-4 p-2 bg-white rounded-lg shadow-md grid grid-cols-2 max-w-52">
+            {tabOptions.map((tab) => {
+              return (
+                <Tab key={tab.name} slug={tab.slug}>
+                  {tab.name}
+                </Tab>
+              );
+            })}
+          </div>
+        </div>
+        {children}
+      </div>
+    </>
   );
 };
-
-export const Tab = ({ tab }: { tab: TabNameProps }) => {
-  switch (tab) {
-    case "News":
-      return <div className="border p-2">News</div>;
-    case "Veterinarian":
-      return <div className="border p-2">Veterinarian</div>;
-    case "Vaccinations":
-      return <div className="border p-2">Vaccinations</div>;
-    case "Gallery":
-      return <div className="border p-2">Gallery</div>;
-    case "BlackSmith":
-      return <div className="border p-2">BlackSmith</div>;
-    case "Genealogy tree":
-      return <div className="border p-2">Genealogy tree</div>;
-    default:
-      return <div className="border p-2">News</div>;
-  }
-};
-
-Tab.displayName = "Tab";

@@ -1,1 +1,31 @@
+fragment ContentTabNew on New {
+  title
+  date
+  slug
+  executedBy
+  description
+}
 
+fragment ContentTabFarriery on Farriery {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+
+fragment ContentTabVaccinations on Vaccination {
+  title
+  date
+  slug
+  executedBy
+  description
+}
+
+fragment ContentTabVeterinarians on Veterinarian {
+  title
+  date
+  slug
+  executedBy
+  description
+}

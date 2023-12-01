@@ -1,0 +1,9 @@
+query TabsFarrieriesGetBySlugHorseQuery($slug: String!) {
+  farrieries(filters: { horses: { slug: { eq: $slug } } }) {
+    data {
+      attributes {
+        ...ContentTabFarriery
+      }
+    }
+  }
+}

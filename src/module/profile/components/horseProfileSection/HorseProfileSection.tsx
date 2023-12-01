@@ -23,12 +23,10 @@ export const HorseProfileSection = ({
     { label: "Gender", value: horse.gender },
   ] satisfies HorseSection[];
 
-  console.log(horse.name);
-
   return (
     <section
       className={clsx(
-        "py-4 flex  items-center justify-center",
+        "py-4 flex items-center justify-around md:justify-center md:gap-10",
         flexCol ? "flex-col" : "flex-row"
       )}
     >
@@ -36,7 +34,7 @@ export const HorseProfileSection = ({
         url={horse.profileImage.data?.attributes?.url ?? ""}
         horseName={horse?.name ?? ""}
       />
-      <div className="flex flex-col justify-start items-start mt-5 ml-5 text-left">
+      <div className="flex flex-col justify-start items-start mt-5 md:ml-5 text-left">
         {horseSection.map((item) => {
           return (
             <HorseDetails

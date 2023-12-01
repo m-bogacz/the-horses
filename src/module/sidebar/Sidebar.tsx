@@ -11,6 +11,7 @@ export const Sidebar = async () => {
     <aside className="h-full w-full bg-nav rounded-s-sm ">
       <ul className="h-full w-full flex-col items-stretch p-5">
         {horses?.map(({ attributes }) => {
+          console.log("attributes", attributes);
           return (
             <ActiveLink
               key={attributes?.slug}
