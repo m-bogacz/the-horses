@@ -1,26 +1,29 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
+import { type TabSlugProps } from "../common/types";
 import { ContentTab } from "./ContentTabs/ContentTabs";
 
-export const TabsPanel = () => {
-  const searchParams = useSearchParams();
-  const params = useParams();
-  console.log(params);
-  const currentTab = searchParams.get("tab") ?? "news";
+export const TabsPanel = ({
+  currentTab,
+  data,
+}: {
+  currentTab: TabSlugProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}) => {
   switch (currentTab) {
     case "news":
     case "veterinarians":
     case "vaccinations":
     case "farrieries":
-      return <ContentTab tab={currentTab} horseSlug={String(params.slug)} />;
+      return <ContentTab data={data} />;
 
-    case "gallery":
+    // case "gallery":
     // return <Tab tabName={tab}>Gallery</Tab>;
 
     // return <Tab tabName={tab}>BlackSmith</Tab>;
 
-    case "genealogy":
+    // case "genealogy":
     // return <Tab tabName={tab}>Genealogy</Tab>;
 
     default:

@@ -11,15 +11,15 @@ export const Sidebar = async () => {
     <aside className="h-full w-full bg-nav rounded-s-sm ">
       <ul className="h-full w-full flex-col items-stretch p-5">
         {horses?.map(({ attributes }) => {
-          console.log("attributes", attributes);
+          if (!attributes) return null;
           return (
             <ActiveLink
-              key={attributes?.slug}
-              href={`/horse/${attributes?.slug}`}
+              key={attributes.slug}
+              href={`/horse/${attributes.slug}`}
             >
               <SidebarImage
-                name={attributes?.name as string}
-                src={attributes?.profileImage.data?.attributes?.url as string}
+                name={attributes.name}
+                src={attributes.profileImage.data?.attributes?.url as string}
               />
             </ActiveLink>
           );

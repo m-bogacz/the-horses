@@ -1,25 +1,21 @@
 import React from "react";
-
 import { tabOptions } from "./common/utils";
 import { Tab } from "./components/Tab";
 
-export const Tabs = ({ children }: { children: React.ReactNode }) => {
+export const Tabs = () => {
   return (
-    <>
-      <div className="mx-2 md:mx-10 my-2 md:my-5">
-        <div className="mx-auto">
-          <div className="mb-4 md:flex flex-wrap md:text-center md:space-x-4 p-2 bg-white rounded-lg shadow-md grid grid-cols-2 max-w-52">
-            {tabOptions.map((tab) => {
-              return (
-                <Tab key={tab.name} slug={tab.slug}>
-                  {tab.name}
-                </Tab>
-              );
-            })}
-          </div>
+    <div className="mx-2 md:mx-10 my-2 md:my-5">
+      <div className="mx-auto">
+        <div className="mb-4 md:flex flex-wrap md:text-center md:space-x-4 p-2 bg-white rounded-lg shadow-md border grid grid-cols-2 max-w-52">
+          {tabOptions.map((tab) => {
+            return (
+              <Tab key={tab.name} tabSlug={tab.slug}>
+                {tab.name}
+              </Tab>
+            );
+          })}
         </div>
-        {children}
       </div>
-    </>
+    </div>
   );
 };

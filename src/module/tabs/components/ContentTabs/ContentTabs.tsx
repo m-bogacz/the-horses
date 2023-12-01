@@ -1,25 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react";
-import { type TabSlugProps } from "../../common/types";
-
 import { TableTR } from "./table/TableTR";
-import { getTabsByTabSlugAndHorseSlug } from "@/api/tabs/getTabsByTabSlugAndHorseSlug";
 
-export const ContentTab = async ({
-  tab,
-  horseSlug,
-}: {
-  tab: TabSlugProps;
-  horseSlug: string;
-}) => {
-  const content = await getTabsByTabSlugAndHorseSlug({
-    tabSlug: tab,
-    horseSlug,
-  });
-  console.log("content =>", content);
-  if (content?.length === 0) {
-    return <div>There is no content</div>;
-  }
+type TableTRProps = {
+  attributes?: {
+    title: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    date?: any;
+    slug?: string | null | undefined;
+    executedBy: string;
+    description?: string | null | undefined;
+  };
+};
 
+export const ContentTab = async ({ data }: { data: TableTRProps[] }) => {
   return (
     <div className="flex flex-col">
       <div className="-m-1.5 overflow-x-auto">
@@ -54,14 +48,14 @@ export const ContentTab = async ({
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                    className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
                   >
                     action
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {content?.map((item) => {
+                {data.map((item) => {
                   return <TableTR key={item.attributes?.title} data={item} />;
                 })}
               </tbody>
