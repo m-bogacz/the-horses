@@ -4,13 +4,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "media.graphassets.com",
+        hostname: "lionfish-app-p9hoi.ondigitalocean.app/uploads",
         pathname: "/**",
       },
       {
-        protocol: "https",
-
-        hostname: "lionfish-app-p9hoi.ondigitalocean.app/uploads",
+        protocol: "http",
+        hostname: "localhost",
         pathname: "/**",
       },
     ],
