@@ -1,10 +1,16 @@
 fragment Horse on Horse {
   name
+  slug
+  createAsParent
+  updatedAt
   foaling
   gender
-  id
   place
   profileImage {
-    url
+    data {
+      attributes {
+        url
+      }
+    }
   }
 }

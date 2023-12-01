@@ -3,21 +3,27 @@ import clsx from "clsx";
 import { ProfileImage } from "../ProfileImage";
 import { type HorseSection } from "../../types";
 import { HorseDetails } from "./components/HorseDetails";
-import { type HorseFragment } from "@/gql/graphql";
+import { type HorseEntity } from "@/gql/graphql";
 
 export const HorseProfileSection = ({
-  horse,
+  horseData,
   flexCol = false,
 }: {
-  horse: HorseFragment;
+  horseData: HorseEntity;
   flexCol?: boolean;
 }) => {
+  const horse = horseData.attributes;
+
+  if (!horse) return null;
+
   const horseSection = [
     { label: "Name", value: horse.name },
     { label: "Date", value: horse.foaling },
     { label: "Place", value: horse.place },
     { label: "Gender", value: horse.gender },
   ] satisfies HorseSection[];
+
+  console.log(horse.name);
 
   return (
     <section
@@ -26,7 +32,10 @@ export const HorseProfileSection = ({
         flexCol ? "flex-col" : "flex-row"
       )}
     >
-      <ProfileImage url={horse.profileImage.url} horseName={horse.name} />
+      <ProfileImage
+        url={horse.profileImage.data?.attributes?.url ?? ""}
+        horseName={horse?.name ?? ""}
+      />
       <div className="flex flex-col justify-start items-start mt-5 ml-5 text-left">
         {horseSection.map((item) => {
           return (

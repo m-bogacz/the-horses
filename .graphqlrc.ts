@@ -5,7 +5,7 @@ loadEnvConfig(process.cwd());
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: process.env.GRAPHQL_URL,
+  schema: `${process.env.APP_SERVER_URL}${process.env.GRAPHQL_ENDPOINT}`,
   documents: "src/graphql/**/*.graphql",
   ignoreNoDocuments: true,
   generates: {
@@ -16,7 +16,7 @@ const config: CodegenConfig = {
       },
       config: {
         useTypeImports: true,
-        // defaultScalarType: "unknown",
+        defaultScalarType: "any",
         enumsAsTypes: true,
         skipTypename: true,
         documentMode: "string",

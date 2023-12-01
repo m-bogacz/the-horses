@@ -1,10 +1,17 @@
 query HorsesGetAll {
   horses {
-    id
-    slug
-    name
-    profileImage {
-      url
+    data {
+      attributes {
+        name
+        slug
+        profileImage {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
     }
   }
 }

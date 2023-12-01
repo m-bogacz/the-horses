@@ -1,5 +1,5 @@
 import { executeGraphql } from "@/api/executeGraphql";
-import { HorseGetByNameDocument } from "@/gql/graphql";
+import { type HorseEntity, HorseGetByNameDocument } from "@/gql/graphql";
 
 export const getHorseByName = async (slug: string) => {
   const graphqlResponse = await executeGraphql({
@@ -7,5 +7,5 @@ export const getHorseByName = async (slug: string) => {
     variables: { slug },
   });
 
-  return graphqlResponse.horse;
+  return graphqlResponse.horses?.data[0] as HorseEntity;
 };

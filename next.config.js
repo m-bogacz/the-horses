@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: "media.graphassets.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+
+        hostname: "lionfish-app-p9hoi.ondigitalocean.app/uploads",
+        pathname: "/**",
+      },
     ],
   },
 };
