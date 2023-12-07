@@ -208,7 +208,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentTabTab | Farriery | Horse | I18NLocale | New | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Vaccination | Veterinarian;
+export type GenericMorph = ComponentTabTab | Farriery | Horse | I18NLocale | New | Photo | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Vaccination | Veterinarian;
 
 export type Horse = {
   createAsParent: Scalars['Boolean']['output'];
@@ -220,10 +220,12 @@ export type Horse = {
   mother?: Maybe<HorseEntityResponse>;
   name: Scalars['String']['output'];
   news?: Maybe<NewRelationResponseCollection>;
+  photos?: Maybe<PhotoRelationResponseCollection>;
   place: Scalars['String']['output'];
   profileImage: UploadFileEntityResponse;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  slug: Scalars['String']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
+  slug_url: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   vaccinations?: Maybe<VaccinationRelationResponseCollection>;
   veterinarian?: Maybe<VeterinarianEntityResponse>;
@@ -240,6 +242,14 @@ export type HorseFarrieriesArgs = {
 
 export type HorseNewsArgs = {
   filters?: InputMaybe<NewFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type HorsePhotosArgs = {
+  filters?: InputMaybe<PhotoFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -281,9 +291,11 @@ export type HorseFiltersInput = {
   news?: InputMaybe<NewFiltersInput>;
   not?: InputMaybe<HorseFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<HorseFiltersInput>>>;
+  photos?: InputMaybe<PhotoFiltersInput>;
   place?: InputMaybe<StringFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  slug_url?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   vaccinations?: InputMaybe<VaccinationFiltersInput>;
   veterinarian?: InputMaybe<VeterinarianFiltersInput>;
@@ -298,10 +310,12 @@ export type HorseInput = {
   mother?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   news?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  photos?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   place?: InputMaybe<Scalars['String']['input']>;
   profileImage?: InputMaybe<Scalars['ID']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  slug_url?: InputMaybe<Scalars['String']['input']>;
   vaccinations?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   veterinarian?: InputMaybe<Scalars['ID']['input']>;
 };
@@ -423,6 +437,7 @@ export type Mutation = {
   createFarriery?: Maybe<FarrieryEntityResponse>;
   createHorse?: Maybe<HorseEntityResponse>;
   createNew?: Maybe<NewEntityResponse>;
+  createPhoto?: Maybe<PhotoEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -434,6 +449,7 @@ export type Mutation = {
   deleteFarriery?: Maybe<FarrieryEntityResponse>;
   deleteHorse?: Maybe<HorseEntityResponse>;
   deleteNew?: Maybe<NewEntityResponse>;
+  deletePhoto?: Maybe<PhotoEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -457,6 +473,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateHorse?: Maybe<HorseEntityResponse>;
   updateNew?: Maybe<NewEntityResponse>;
+  updatePhoto?: Maybe<PhotoEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -488,6 +505,11 @@ export type MutationCreateHorseArgs = {
 
 export type MutationCreateNewArgs = {
   data: NewInput;
+};
+
+
+export type MutationCreatePhotoArgs = {
+  data: PhotoInput;
 };
 
 
@@ -532,6 +554,11 @@ export type MutationDeleteHorseArgs = {
 
 
 export type MutationDeleteNewArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeletePhotoArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -626,6 +653,12 @@ export type MutationUpdateHorseArgs = {
 
 export type MutationUpdateNewArgs = {
   data: NewInput;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUpdatePhotoArgs = {
+  data: PhotoInput;
   id: Scalars['ID']['input'];
 };
 
@@ -744,6 +777,58 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type Photo = {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  date?: Maybe<Scalars['DateTime']['output']>;
+  horse?: Maybe<HorseEntityResponse>;
+  img?: Maybe<UploadFileEntityResponse>;
+  location?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type PhotoEntity = {
+  attributes?: Maybe<Photo>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type PhotoEntityResponse = {
+  data?: Maybe<PhotoEntity>;
+};
+
+export type PhotoEntityResponseCollection = {
+  data: Array<PhotoEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PhotoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PhotoFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateTimeFilterInput>;
+  horse?: InputMaybe<HorseFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  location?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<PhotoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PhotoFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PhotoInput = {
+  date?: InputMaybe<Scalars['DateTime']['input']>;
+  horse?: InputMaybe<Scalars['ID']['input']>;
+  img?: InputMaybe<Scalars['ID']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type PhotoRelationResponseCollection = {
+  data: Array<PhotoEntity>;
+};
+
 export type PublicationState =
   | 'LIVE'
   | 'PREVIEW';
@@ -758,6 +843,8 @@ export type Query = {
   me?: Maybe<UsersPermissionsMe>;
   new?: Maybe<NewEntityResponse>;
   news?: Maybe<NewEntityResponseCollection>;
+  photo?: Maybe<PhotoEntityResponse>;
+  photos?: Maybe<PhotoEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -818,6 +905,19 @@ export type QueryNewArgs = {
 
 export type QueryNewsArgs = {
   filters?: InputMaybe<NewFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryPhotoArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryPhotosArgs = {
+  filters?: InputMaybe<PhotoFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1399,14 +1499,14 @@ export type HorseGetByNameQueryVariables = Exact<{
 }>;
 
 
-export type HorseGetByNameQuery = { horses?: { data: Array<{ id?: string | null, attributes?: { name: string, slug: string, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string } | null } | null } } | null }> } | null };
+export type HorseGetByNameQuery = { horses?: { data: Array<{ id?: string | null, attributes?: { name: string, slug?: string | null, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string, hash: string } | null } | null } } | null }> } | null };
 
 export type HorsesGetAllQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HorsesGetAllQuery = { horses?: { data: Array<{ attributes?: { name: string, slug: string, profileImage: { data?: { attributes?: { url: string } | null } | null } } | null }> } | null };
+export type HorsesGetAllQuery = { horses?: { data: Array<{ attributes?: { name: string, slug?: string | null, profileImage: { data?: { attributes?: { url: string, hash: string } | null } | null } } | null }> } | null };
 
-export type HorseFragment = { name: string, slug: string, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string } | null } | null } };
+export type HorseFragment = { name: string, slug?: string | null, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string, hash: string } | null } | null } };
 
 export type TabsFarrieriesGetBySlugHorseQueryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -1471,6 +1571,7 @@ export const HorseFragmentDoc = new TypedDocumentString(`
     data {
       attributes {
         url
+        hash
       }
     }
   }
@@ -1535,6 +1636,7 @@ export const HorseGetByNameDocument = new TypedDocumentString(`
     data {
       attributes {
         url
+        hash
       }
     }
   }
@@ -1550,6 +1652,7 @@ export const HorsesGetAllDocument = new TypedDocumentString(`
           data {
             attributes {
               url
+              hash
             }
           }
         }

@@ -5,7 +5,7 @@ import { Accordion } from "@/shared/Accordion";
 
 export const Profile = ({ horse }: { horse: HorseEntity }) => {
   return (
-    <div className="md:mx-10 mt-2">
+    <div className="mt-2">
       <Accordion>
         <HorseProfileSection horseData={horse} />
       </Accordion>

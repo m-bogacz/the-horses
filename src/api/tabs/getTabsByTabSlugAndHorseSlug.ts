@@ -26,6 +26,9 @@ export const getFarrieriesTabsByHorse = async (horseSlug: string) => {
     next: {
       tags: ["farrieries"],
     },
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
+    },
   });
 
   return graphqlResponse.farrieries?.data;
@@ -48,6 +51,7 @@ export const getVeterinarianTabsByHorse = async (horseSlug: string) => {
     next: {
       tags: ["veterinarians"],
     },
+    cache: "no-store",
   });
 
   return graphqlResponse.veterinarians?.data;

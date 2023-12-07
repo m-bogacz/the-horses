@@ -19,7 +19,7 @@ export const Sidebar = async () => {
             >
               <SidebarImage
                 name={attributes.name}
-                src={attributes.profileImage.data?.attributes?.url as string}
+                src={attributes.profileImage.data?.attributes?.hash}
               />
             </ActiveLink>
           );

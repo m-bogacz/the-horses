@@ -16,7 +16,7 @@ export default async function TabPage({
     return <div>There is no content</div>;
   }
   return (
-    <section className="flex-1 mx-10">
+    <section className="flex-1">
       <TabsPanel data={content} currentTab={params.tab} />
     </section>
   );

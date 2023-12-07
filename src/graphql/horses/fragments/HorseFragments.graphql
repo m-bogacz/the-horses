@@ -10,6 +10,7 @@ fragment Horse on Horse {
     data {
       attributes {
         url
+        hash
       }
     }
   }

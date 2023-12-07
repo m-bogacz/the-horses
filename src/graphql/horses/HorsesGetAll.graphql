@@ -8,6 +8,7 @@ query HorsesGetAll {
           data {
             attributes {
               url
+              hash
             }
           }
         }

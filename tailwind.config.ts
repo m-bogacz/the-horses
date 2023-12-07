@@ -16,6 +16,8 @@ const config: Config = {
       colors: {
         dark: "#2D3434",
         nav: "#0F8388",
+        "nav-200": "#0f8388",
+        "gray-light": "#CCCCCC",
         logo: "#47E5EB",
         primary: "#EDF2F7",
       },
