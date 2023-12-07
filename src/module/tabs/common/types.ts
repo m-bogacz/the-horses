@@ -10,7 +10,7 @@ export type TabNameProps =
   | "News"
   | "Veterinarian"
   | "Vaccinations"
-  | "Farriery"
+  | "Farrier"
   | "Gallery"
   | "Genealogy tree";
 
