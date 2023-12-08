@@ -6,5 +6,5 @@ export const getHorses = async () => {
     query: HorsesGetAllDocument,
   });
 
-  return graphqlResponse.horses?.data;
+  return graphqlResponse.horses;
 };

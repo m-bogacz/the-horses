@@ -15,8 +15,8 @@ import * as types from './graphql';
  */
 const documents = {
     "query HorseGetByName($slug: String!) {\n  horses(filters: {slug: {eq: $slug}}) {\n    data {\n      id\n      attributes {\n        ...Horse\n      }\n    }\n  }\n}": types.HorseGetByNameDocument,
-    "query HorsesGetAll {\n  horses {\n    data {\n      attributes {\n        name\n        slug\n        profileImage {\n          data {\n            attributes {\n              url\n              hash\n            }\n          }\n        }\n      }\n    }\n  }\n}": types.HorsesGetAllDocument,
-    "fragment Horse on Horse {\n  name\n  slug\n  createAsParent\n  updatedAt\n  foaling\n  gender\n  place\n  profileImage {\n    data {\n      attributes {\n        url\n        hash\n      }\n    }\n  }\n}": types.HorseFragmentDoc,
+    "query HorsesGetAll {\n  horses {\n    data {\n      ...SidebarDataHorses\n    }\n  }\n}": types.HorsesGetAllDocument,
+    "fragment Horse on Horse {\n  name\n  slug\n  createAsParent\n  updatedAt\n  foaling\n  gender\n  place\n  profileImage {\n    data {\n      attributes {\n        url\n        hash\n      }\n    }\n  }\n}\n\nfragment SidebarDataHorses on HorseEntity {\n  attributes {\n    name\n    slug\n    profileImage {\n      data {\n        attributes {\n          url\n          hash\n        }\n      }\n    }\n  }\n}": types.HorseFragmentDoc,
     "query TabsFarrieriesGetBySlugHorseQuery($slug: String!) {\n  farrieries(filters: {horses: {slug: {eq: $slug}}}) {\n    data {\n      attributes {\n        ...ContentTabFarriery\n      }\n    }\n  }\n}": types.TabsFarrieriesGetBySlugHorseQueryDocument,
     "query TabsNewsGetBySlugHorseQuery($slug: String!) {\n  news(filters: {horses: {slug: {eq: $slug}}}) {\n    data {\n      attributes {\n        ...ContentTabNew\n      }\n    }\n  }\n}": types.TabsNewsGetBySlugHorseQueryDocument,
     "query TabsVaccinationsGetBySlugHorseQuery($slug: String!) {\n  vaccinations(filters: {horses: {slug: {eq: $slug}}}) {\n    data {\n      attributes {\n        ...ContentTabVaccinations\n      }\n    }\n  }\n}": types.TabsVaccinationsGetBySlugHorseQueryDocument,
@@ -31,11 +31,11 @@ export function graphql(source: "query HorseGetByName($slug: String!) {\n  horse
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query HorsesGetAll {\n  horses {\n    data {\n      attributes {\n        name\n        slug\n        profileImage {\n          data {\n            attributes {\n              url\n              hash\n            }\n          }\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').HorsesGetAllDocument;
+export function graphql(source: "query HorsesGetAll {\n  horses {\n    data {\n      ...SidebarDataHorses\n    }\n  }\n}"): typeof import('./graphql').HorsesGetAllDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment Horse on Horse {\n  name\n  slug\n  createAsParent\n  updatedAt\n  foaling\n  gender\n  place\n  profileImage {\n    data {\n      attributes {\n        url\n        hash\n      }\n    }\n  }\n}"): typeof import('./graphql').HorseFragmentDoc;
+export function graphql(source: "fragment Horse on Horse {\n  name\n  slug\n  createAsParent\n  updatedAt\n  foaling\n  gender\n  place\n  profileImage {\n    data {\n      attributes {\n        url\n        hash\n      }\n    }\n  }\n}\n\nfragment SidebarDataHorses on HorseEntity {\n  attributes {\n    name\n    slug\n    profileImage {\n      data {\n        attributes {\n          url\n          hash\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').HorseFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1508,6 +1508,8 @@ export type HorsesGetAllQuery = { horses?: { data: Array<{ attributes?: { name: 
 
 export type HorseFragment = { name: string, slug?: string | null, createAsParent: boolean, updatedAt?: any | null, foaling: any, gender: Enum_Horse_Gender, place: string, profileImage: { data?: { attributes?: { url: string, hash: string } | null } | null } };
 
+export type SidebarDataHorsesFragment = { attributes?: { name: string, slug?: string | null, profileImage: { data?: { attributes?: { url: string, hash: string } | null } | null } } | null };
+
 export type TabsFarrieriesGetBySlugHorseQueryQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -1577,6 +1579,22 @@ export const HorseFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"Horse"}) as unknown as TypedDocumentString<HorseFragment, unknown>;
+export const SidebarDataHorsesFragmentDoc = new TypedDocumentString(`
+    fragment SidebarDataHorses on HorseEntity {
+  attributes {
+    name
+    slug
+    profileImage {
+      data {
+        attributes {
+          url
+          hash
+        }
+      }
+    }
+  }
+}
+    `, {"fragmentName":"SidebarDataHorses"}) as unknown as TypedDocumentString<SidebarDataHorsesFragment, unknown>;
 export const ContentTabNewFragmentDoc = new TypedDocumentString(`
     fragment ContentTabNew on New {
   title
@@ -1645,22 +1663,24 @@ export const HorsesGetAllDocument = new TypedDocumentString(`
     query HorsesGetAll {
   horses {
     data {
-      attributes {
-        name
-        slug
-        profileImage {
-          data {
-            attributes {
-              url
-              hash
-            }
-          }
+      ...SidebarDataHorses
+    }
+  }
+}
+    fragment SidebarDataHorses on HorseEntity {
+  attributes {
+    name
+    slug
+    profileImage {
+      data {
+        attributes {
+          url
+          hash
         }
       }
     }
   }
-}
-    `) as unknown as TypedDocumentString<HorsesGetAllQuery, HorsesGetAllQueryVariables>;
+}`) as unknown as TypedDocumentString<HorsesGetAllQuery, HorsesGetAllQueryVariables>;
 export const TabsFarrieriesGetBySlugHorseQueryDocument = new TypedDocumentString(`
     query TabsFarrieriesGetBySlugHorseQuery($slug: String!) {
   farrieries(filters: {horses: {slug: {eq: $slug}}}) {

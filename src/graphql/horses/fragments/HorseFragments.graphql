@@ -15,3 +15,18 @@ fragment Horse on Horse {
     }
   }
 }
+
+fragment SidebarDataHorses on HorseEntity {
+  attributes {
+    name
+    slug
+    profileImage {
+      data {
+        attributes {
+          url
+          hash
+        }
+      }
+    }
+  }
+}

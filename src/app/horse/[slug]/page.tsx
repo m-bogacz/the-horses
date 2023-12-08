@@ -1,3 +1,7 @@
-export default async function HorsePage({}) {
-  return <></>;
+export default async function HorsePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  return <>{params.slug}</>;
 }
